@@ -9,8 +9,7 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Nume</label>
         <input [(ngModel)]="selectedUser.nume" #name="ngModel" name="nume" type="text" class="form-control" id="nume"
-          aria-describedby="numeHealp" required minlength="3" maxlength="250" pattern="^[a-zA-Z-]+$"
-          [class.is-invalid]="name.invalid && (name.dirty || name.touched)">
+          aria-describedby="numeHealp" required minlength="3" maxlength="250" pattern="^[a-zA-Z-]+$" [class.is-invalid]="name.invalid && (name.dirty || name.touched)">
         <small *ngIf="name.valid" id="numeHealp" class="form-text text-muted">Numele completat corect</small>
         <div *ngIf="name.invalid && (name.dirty || name.touched)" class="invalid-feedback">
           <div *ngIf="name.errors?.['required']">
@@ -20,7 +19,7 @@
             Acest camp trebuie sa fie de minim 3 caractere.
           </div>
           <div *ngIf="name.errors?.['maxlength']">
-            Acest camp trebuie sa contina maxim 250 caractere.
+           Acest camp trebuie sa contina maxim 250 caractere.
           </div>
         </div>
       </div>
@@ -43,24 +42,16 @@
         <small id="telefonHealp" class="form-text text-muted">Telefon completat corect</small>
       </div>
       <div class="form-group">
-        <div class="form-group">
-          <label for="poza">Poza</label>
-          <input [(ngModel)]="selectedUser.poza" name="poza" type="text" class="form-control" id="poza"
-            aria-describedby="pozaHealp">
-          <small id="pozaHealp" class="form-text text-muted"> poza adaugata</small>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">An</label>
-          <input [(ngModel)]="selectedUser.datanastere" name="datanastere" type="date" class="form-control" id="an"
-            aria-describedby="anHealp">
-          <small id="anHealp" class="form-text text-muted">Format:2022-01-01</small>
-        </div>
-        <input [(ngModel)]="selectedUser.id" name="id" type="hidden" class="form-control" id="id">
+        <label for="exampleInputEmail1">An</label>
+        <input [(ngModel)]="selectedUser.datanastere" name="datanastere" type="date" class="form-control" id="an"
+          aria-describedby="anHealp">
+        <small id="anHealp" class="form-text text-muted">Format:2022-01-01</small>
+      </div>
+      <input [(ngModel)]="selectedUser.id" name="id" type="hidden" class="form-control" id="id">
 
 
 
-        <button [disabled]="!f.valid" (click)="createOrUpdateUser(f)" type="submit" class="btn btn-primary">Create or
-          Update User</button>
+      <button [disabled]="!f.valid" (click)="createOrUpdateUser(f)" type="submit" class="btn btn-primary">Create or Update User</button>
     </form>
 
   </div>
@@ -73,7 +64,6 @@
         <th scope="col">Prenume</th>
         <th scope="col">Email</th>
         <th scope="col">Operatii</th>
-        <th scope="col">Poza</th>
       </tr>
     </thead>
     <tbody>
@@ -82,7 +72,6 @@
         <td>{{ user.nume }}</td>
         <td>{{ user.prenume }}</td>
         <td>{{ user.email }}</td>
-        <td><img src="{{user.poza}}" alt="{{ user.nume }}"></td>
         <td>
           <button type="button" class="btn btn-primary" (click)="deleteUser(user.id)">Delete</button>
           <button type="button" class="btn btn-danger" (click)="selectUser(user)">Update</button>
