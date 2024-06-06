@@ -14,6 +14,13 @@
           v-model="currentUser.prenume"
         />
       </div>
+      <div class="form-group">
+        <label for="poza">Poza</label>
+        <input type="text" class="form-control" id="poza"
+          v-model="currentUser.poza"
+        />
+        <img style="max-width:100px" :src="currentUser.poza" alt="">
+      </div>
       
     </form>
     

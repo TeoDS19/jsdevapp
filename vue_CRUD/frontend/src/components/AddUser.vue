@@ -2,27 +2,72 @@
   <div class="submit-form">
     <div v-if="!submitted">
       <div class="form-group">
-        <label for="title">Title</label>
+        <label for="nume">Nume</label>
         <input
           type="text"
           class="form-control"
-          id="title"
+          id="nume"
           required
-          v-model="tutorial.title"
-          name="title"
+          v-model="user.nume"
+          name="nume"
         />
       </div>
       <div class="form-group">
-        <label for="description">Description</label>
+        <label for="prenume">Prenume</label>
         <input
+          type="text"
           class="form-control"
-          id="description"
+          id="prenume"
           required
-          v-model="tutorial.description"
-          name="description"
+          v-model="user.prenume"
+          name="prenume"
         />
       </div>
-      <button @click="saveTutorial" class="btn btn-success">Submit</button>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          class="form-control"
+          id="email"
+          required
+          v-model="user.email"
+          name="email"
+          type="email"
+        />
+      </div>
+      <div class="form-group">
+        <label for="telefon">Telefon</label>
+        <input
+          class="form-control"
+          id="telefon"
+          required
+          v-model="user.telefon"
+          name="telefon"
+          type="text"
+        />
+      </div>
+      <div class="form-group">
+        <label for="datanastere">Data nastere</label>
+        <input
+          class="form-control"
+          id="datanastere"
+          required
+          v-model="user.datanastere"
+          name="datanastere"
+          type="date"
+        />
+      </div>
+      <div class="form-group">
+        <label for="poza">Poza</label>
+        <input
+          class="form-control"
+          id="poza"
+          required
+          v-model="user.poza"
+          name="poza"
+          type="URL"
+        />
+      </div>
+      <button @click="saveUser" class="btn btn-success">Submit</button>
     </div>
     <div v-else>
       <h4>You submitted successfully!</h4>
@@ -36,37 +81,42 @@ export default {
   name: "add-user",
   data() {
     return {
-      tutorial: {
+      user: {
         id: null,
-        title: "",
-        description: "",
-        published: false
+        nume: "",
+        prenume: "",
+        email: "",
+        poza:"",
       },
-      submitted: false
+      submitted: false,
     };
   },
   methods: {
-    saveTutorial() {
+    saveUser() {
       var data = {
-        title: this.tutorial.title,
-        description: this.tutorial.description
+        nume: this.user.nume,
+        prenume: this.user.prenume,
+        email: this.user.email,
+        telefon: this.user.telefon,
+        datanastere: this.user.datanastere,
+        poza:this.user.poza,
       };
       UserService.create(data)
-        .then(response => {
-          this.tutorial.id = response.data.id;
+        .then((response) => {
+          this.user.id = response.data.id;
           console.log(response.data);
           this.submitted = true;
         })
-        .catch(e => {
+        .catch((e) => {
           console.log(e);
         });
     },
-    
+
     newUser() {
       this.submitted = false;
-      this.tutorial = {};
-    }
-  }
+      this.user = {};
+    },
+  },
 };
 </script>
 <style>

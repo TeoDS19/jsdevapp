@@ -45,6 +45,9 @@
         <div>
           <label><strong>Prenume:</strong></label> {{ currentUser.prenume }}
         </div>
+         <div>
+          <label><strong>Poza:</strong></label> {{ currentUser.poza }}
+        </div>
 
         <router-link
           :to="'/users/' + currentUser.id"
@@ -78,8 +81,8 @@ export default {
     retrieveUsers() {
       UserService.getAll()
         .then((response) => {
-          this.users = response.data["data"];
-          console.log(response.data["data"]);
+          this.users = response.data["users"];
+          console.log(response.data["users"]);
         })
         .catch((e) => {
           console.log(e);

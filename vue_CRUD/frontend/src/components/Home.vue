@@ -24,7 +24,7 @@
     <div class="row">
       <div
         class="col-sm-3"
-        v-for="(user, index) in users"
+        v-for="(user, index,) in users"
         :key="index"
         @click="setActiveUser(user, index)"
       >
@@ -32,6 +32,7 @@
           <div class="card-body">
             <h5 class="card-title">{{ user.nume }} {{ user.prenume }}</h5>
             <p class="card-text">{{ user.id }}</p>
+            <img :src="user.poza" alt="">
             <router-link
               :to="'/users/' + user.id"
               class="btn btn-outline-primary me-2 mt-2"
@@ -59,8 +60,8 @@ export default {
     retrieveUsers() {
       UserService.getAll()
         .then((response) => {
-          this.users = response.data["data"];
-          console.log(response.data["data"]);
+          this.users = response.data["users"];
+          console.log(response.data["users"]);
         })
         .catch((e) => {
           console.log(e);

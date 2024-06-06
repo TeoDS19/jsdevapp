@@ -66,8 +66,9 @@ const create = (user, callback) => {
 exports.create = create;
 // update user
 const update = (user, callback) => {
-    const queryString = `UPDATE jsusers SET nume=?, prenume=?,email=?, telefon=?, datanastere=? WHERE id=?`;
-    db_1.db.query(queryString, [user.nume, user.prenume, user.email, user.telefon, user.datanastere, user.id], (err, result) => {
+    let mydate = user.datanastere.toISOString().split('T')[0];
+    const queryString = `UPDATE jsusers SET nume=?, prenume=?,email=?,datanastere=?, telefon=?, ,poza=? WHERE id=?`;
+    db_1.db.query(queryString, [user.nume, user.prenume, user.email, mydate, user.telefon, user.poza, user.id], (err, result) => {
         if (err) {
             callback(err);
         }
